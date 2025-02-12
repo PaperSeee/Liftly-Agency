@@ -1,0 +1,314 @@
+:root {
+    --primary: #00D1FF;
+    --secondary: #8A2BE2;
+    --dark-bg: #0f1118;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --svg-gradient: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3ClinearGradient id='logo-gradient' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300D1FF'/%3E%3Cstop offset='100%25' style='stop-color:%238A2BE2'/%3E%3C/linearGradient%3E%3C/svg%3E%0A");
+}
+
+/* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Add SVG Gradient Definition */
+body::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+/* Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+}
+
+/* Loader */
+.loader-circle {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--primary);
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Button Styles */
+.btn-primary {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+/* Card Hover Effects */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 209, 255, 0.1);
+}
+
+.hover-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.hover-card:hover::after {
+    left: 100%;
+}
+
+/* Navigation Styles */
+.nav-link {
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background-size: 0 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    background-size: 100% 2px;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+}
+
+.nav-link.active {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+}
+
+/* New Banner Navigation Styles */
+.banner-nav {
+    background: linear-gradient(135deg, rgba(0, 209, 255, 0.1), rgba(138, 43, 226, 0.1));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transform: skewY(-1deg);
+    backdrop-filter: blur(10px);
+}
+
+.banner-nav > div {
+    transform: skewY(1deg);
+}
+
+.logo-text {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+}
+
+/* Process Step Styles */
+.process-step {
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.process-step::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    padding: 2px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* Process Arrow Animations */
+.process-arrow {
+    animation: pulse 2s infinite;
+    opacity: 0.6;
+}
+
+@keyframes pulse {
+    0% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(10px); opacity: 1; }
+    100% { transform: translateX(0); opacity: 0.6; }
+}
+
+/* Service List Styles */
+.glass ul li {
+    position: relative;
+    padding-left: 1rem;
+    line-height: 1.6;
+    transition: transform 0.2s ease;
+}
+
+.glass ul li:hover {
+    transform: translateX(5px);
+    color: var(--primary);
+}
+
+/* Footer Styles */
+footer {
+    position: relative;
+    background: linear-gradient(to bottom, var(--dark-bg), rgba(15, 17, 24, 0.95));
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--primary), var(--secondary), transparent);
+}
+
+/* Contact Page Specific Styles */
+.calendly-inline-widget {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+/* Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section Transitions */
+section {
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* Enhanced Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Logo Styles */
+.logo-gradient {
+    fill: none;
+    stroke: url(#logo-gradient);
+}
+
+/* Social Icons Styles */
+.social-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0, 209, 255, 0.1), rgba(138, 43, 226, 0.1));
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(0, 209, 255, 0.2), rgba(138, 43, 226, 0.2));
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+}
+
+/* Page Transitions */
+.transition-ready {
+    transition: opacity 0.3s ease;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+/* Preload Animation */
+.preload-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.preload-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
